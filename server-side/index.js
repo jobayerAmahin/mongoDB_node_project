@@ -11,7 +11,7 @@ app.use(express.json())
 //vaUnPTV6XJJMFzAA
 
 
-const { MongoClient, ServerApiVersion } = require('mongodb');
+const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb');
 const uri = "mongodb+srv://jamahinmolla2824:vaUnPTV6XJJMFzAA@cluster0.z3e1b.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
 
 // Create a MongoClient with a MongoClientOptions object to set the Stable API version
@@ -40,6 +40,14 @@ async function run() {
         console.log(userData)
         const result = await userCollection.insertOne(userData);
         res.send(result)
+    })
+
+    app.delete('/users/:id',async(req,res)=>{
+      const id=req.params.id
+      console.log(id)
+      const query={_id:new ObjectId(id)}
+      const result=await userCollection.deleteOne(query)
+      res.send(result)
     })
     // Send a ping to confirm a successful connection
     await client.db("admin").command({ ping: 1 });

@@ -1,5 +1,6 @@
 
 
+import { NavLink } from 'react-router-dom';
 import './App.css'
 
 function App() {
@@ -32,6 +33,7 @@ function App() {
         <input type="email" name="email" id="" /><br />
         <input type="submit" value="Submit" id="" />
       </form>
+      <NavLink to='/users'>User List</NavLink>
     </>
   )
 }
